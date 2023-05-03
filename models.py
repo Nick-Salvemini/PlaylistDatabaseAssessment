@@ -50,14 +50,7 @@ class PlaylistSong(db.Model):
                             db.ForeignKey('playlists.id'))
     song_id = db.Column(db.Integer,
                             db.ForeignKey('songs.id'))
-    
-    # playlist = db.relationship('Playlist', 
-    #                            backref='playlist_songs')
-    # song = db.relationship('Song', 
-    #                        secondary='playlists', 
-    #                        backref='playlist_songs')
 
-# DO NOT MODIFY THIS FUNCTION
 def connect_db(app):
     """Connect to database."""
 

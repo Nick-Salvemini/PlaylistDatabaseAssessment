@@ -16,9 +16,6 @@ db.create_all()
 
 app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 
-# Having the Debug Toolbar show redirects explicitly is often useful;
-# however, if you want to turn it off, you can uncomment this line:
-#
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
@@ -33,7 +30,6 @@ def root():
 
 ##############################################################################
 # Playlist routes
-
 
 @app.route("/playlists")
 def show_all_playlists():
@@ -116,14 +112,8 @@ def add_song():
 def add_song_to_playlist(playlist_id):
     """Add a playlist and redirect to list."""
 
-    # BONUS - ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
-
-    # THE SOLUTION TO THIS IS IN A HINT IN THE ASSESSMENT INSTRUCTIONS
-
     playlist = Playlist.query.get_or_404(playlist_id)
     form = NewSongForPlaylistForm()
-
-    # Restrict form to songs not already on this playlist
 
     curr_on_playlist = [song.id for song in playlist.songs]
     song_choices = (db.session.query(Song.id, Song.title).filter(Song.id.notin_(curr_on_playlist)).all())
